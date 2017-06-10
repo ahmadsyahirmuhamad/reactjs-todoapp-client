@@ -7,7 +7,7 @@ export default function reducer(state = initialState, action) {
         case "FOO": {
             return {
                 ...state,
-                foo: "bar"
+                foo: action.payload
             }
         }
         default: {
