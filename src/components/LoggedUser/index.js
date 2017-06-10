@@ -25,7 +25,6 @@ class LoggedUser extends Component {
     }
     const publicRoute = () => {
         return [
-          <Link className="mdl-navigation__link" to="/foo">Foo</Link>,
           <Link className="mdl-navigation__link" to="/login">Login</Link>,
           <Link className="mdl-navigation__link" to="/register">Register</Link>
         ]

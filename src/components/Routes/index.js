@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import Home from '../Home';
-import Foo from '../Foo';
 import Login from '../Login';
 import Register from '../Register';
 import Account from '../Account';
@@ -17,7 +16,6 @@ class Routes extends Component {
       <div className="Routes">
           {/*public route*/}
           <Route exact path = "/" component = {Home} />
-          <Route path = "/foo" component = {Foo} />
           <Route path = "/login" component = {Login} />
           <Route path = "/register" component = {Register} />
           
