@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { testAction } from '../../actions/testActions';
-import Foo from '../Foo';
+import Routes from '../Routes';
+import LoggedUser from '../LoggedUser';
 import './index.css';
 
 class Layout extends Component {
@@ -12,24 +13,6 @@ class Layout extends Component {
   }
 
   render() {
-    const showMenu = () => { 
-        const { foo } = this.props
-        if (foo === "bar"){
-            return privateRoute()
-        } else {
-            return publicRoute()
-        }
-    }
-    const privateRoute = () => {
-        return <div>
-            <Link className="mdl-navigation__link" to="/foo">Logout</Link>
-        </div>
-    }
-    const publicRoute = () => {
-        return <div>
-            <Link className="mdl-navigation__link" to="/bar">Login</Link>
-        </div>
-    }
     return (
       <div className="Layout">
         <Router>
@@ -39,15 +22,13 @@ class Layout extends Component {
                 <span className="mdl-layout-title">Title</span>
                 <div className="mdl-layout-spacer"></div>
                 <nav className="mdl-navigation mdl-layout--large-screen-only">
-                  <div>
-                      { showMenu() } 
-                  </div>
+                  <LoggedUser />
                 </nav>
               </div>
             </header>
             <main className="mdl-layout__content">
               <div className="page-content">
-                <Route path = "/foo" component = {Foo} />
+                <Routes />
                 </div>
             </main>
           </div>
