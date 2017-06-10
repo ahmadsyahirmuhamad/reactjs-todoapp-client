@@ -5,7 +5,8 @@ import './index.css';
 
 class Layout extends Component {
   componentDidMount(){
-    this.props.dispatch(testAction())
+    const { dispatch } = this.props;
+    dispatch(testAction());
   }
 
   render() {
