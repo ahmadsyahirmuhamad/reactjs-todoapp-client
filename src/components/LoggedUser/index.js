@@ -18,19 +18,21 @@ class LoggedUser extends Component {
     }
     const privateRoute = () => {
         return <div>
-            <Link className="mdl-navigation__link" to="/foo">Logout</Link>
+            <Link className="mdl-navigation__link" to="/account">Account</Link>
+            <Link className="mdl-navigation__link" to="/todos">Todo</Link>
+            <Link className="mdl-navigation__link" to="/logout">Logout</Link>
         </div>
     }
     const publicRoute = () => {
         return <div>
-            <Link className="mdl-navigation__link" to="/bar">Login</Link>
+            <Link className="mdl-navigation__link" to="/foo">Foo</Link>
+            <Link className="mdl-navigation__link" to="/login">Login</Link>
+            <Link className="mdl-navigation__link" to="/register">Register</Link>
         </div>
     }
     return (
       <div className="LoggedUser">
-        <div>
-            { showMenu() } 
-        </div>
+        { showMenu() } 
       </div>
     );
   }
