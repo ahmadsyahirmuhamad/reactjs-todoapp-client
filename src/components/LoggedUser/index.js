@@ -17,22 +17,24 @@ class LoggedUser extends Component {
         }
     }
     const privateRoute = () => {
-        return <div>
-            <Link className="mdl-navigation__link" to="/account">Account</Link>
-            <Link className="mdl-navigation__link" to="/todos">Todo</Link>
-            <Link className="mdl-navigation__link" to="/logout">Logout</Link>
-        </div>
+        return [
+          <Link className="mdl-navigation__link" to="/account">Account</Link>,
+          <Link className="mdl-navigation__link" to="/todos">Todo</Link>,
+          <Link className="mdl-navigation__link" to="/logout">Logout</Link>
+        ]
     }
     const publicRoute = () => {
-        return <div>
-            <Link className="mdl-navigation__link" to="/foo">Foo</Link>
-            <Link className="mdl-navigation__link" to="/login">Login</Link>
-            <Link className="mdl-navigation__link" to="/register">Register</Link>
-        </div>
+        return [
+          <Link className="mdl-navigation__link" to="/foo">Foo</Link>,
+          <Link className="mdl-navigation__link" to="/login">Login</Link>,
+          <Link className="mdl-navigation__link" to="/register">Register</Link>
+        ]
     }
     return (
       <div className="LoggedUser">
-        { showMenu() } 
+        <nav className="mdl-navigation mdl-layout--large-screen-only">
+          { showMenu() } 
+        </nav>
       </div>
     );
   }

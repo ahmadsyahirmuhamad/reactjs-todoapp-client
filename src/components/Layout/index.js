@@ -20,9 +20,7 @@ class Layout extends Component {
               <div className="mdl-layout__header-row">
                 <span className="mdl-layout-title">Title</span>
                 <div className="mdl-layout-spacer"></div>
-                <nav className="mdl-navigation mdl-layout--large-screen-only">
-                  <LoggedUser />
-                </nav>
+                <LoggedUser />
               </div>
             </header>
             <main className="mdl-layout__content">
