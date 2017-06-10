@@ -29,7 +29,7 @@ class Layout extends Component {
             <main className="mdl-layout__content">
               <div className="page-content">
                 <Routes />
-                </div>
+              </div>
             </main>
           </div>
         </Router>        
