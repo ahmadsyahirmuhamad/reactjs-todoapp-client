@@ -8,8 +8,7 @@ import './index.css';
 
 class Layout extends Component {
   componentDidMount(){
-    const { dispatch } = this.props;
-    dispatch(testAction());
+    this.props.testAction();
   }
 
   render() {
@@ -46,10 +45,8 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    dispatch: dispatch
-  }
+const mapDispatchToProps = {
+  testAction,
 }
 
 const VisibleLayout = connect(
