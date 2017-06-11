@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { testAction } from '../../actions/testActions';
 import Routes from '../Routes';
 import LoggedUser from '../LoggedUser';
+import { getUser } from '../../actions/userActions';
 import './index.css';
 
 class Layout extends Component {
   componentDidMount(){
-    this.props.testAction();
+    console.log("getUser")
+     getUser()
+      .then((data) => {
+        return this.props.dispatch(data)
+      });
   }
 
   render() {
@@ -39,17 +43,13 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
   return {
-    foo: state.test.foo,
+    user: state.user,
   }
-}
-
-const mapDispatchToProps = {
-  testAction,
 }
 
 const VisibleLayout = connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Layout)
 
 
