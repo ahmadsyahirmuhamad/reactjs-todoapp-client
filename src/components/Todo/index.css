@@ -1,0 +1,11 @@
+.center {
+    text-align: center;
+}
+
+#todo-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+    margin-right: 100px;
+}
