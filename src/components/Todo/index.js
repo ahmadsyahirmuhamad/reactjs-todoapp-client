@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getTodos, addTodo } from '../../actions/todoActions';
 import './index.css'
 import TodoList from '../TodoList';
+import SnackBar from '../SnackBar';
 
 class Todo extends Component {
   constructor(props){
@@ -52,9 +53,6 @@ class Todo extends Component {
   handleSearchSubmit(event){
     event.preventDefault();
     alert(this.state.searchTerm)
-    // const todosList = todo.todo.todos.filter((x) => {
-    //   return x.title.indexOf(this.props.searchTerm) !== -1;
-    // })
   }
   
 
@@ -68,6 +66,9 @@ class Todo extends Component {
     const { todo } = this.state;
     return (
       <div className="Todo">
+        <div>
+          <SnackBar message="this is a message" />
+        </div>
         <h1 className="center">Todos</h1>
         <div id="add-todo">
           <form id="todoForm" onSubmit={this.handleSubmit}>
