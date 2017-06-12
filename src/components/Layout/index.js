@@ -7,7 +7,7 @@ import { getUser } from '../../actions/userActions';
 import './index.css';
 
 class Layout extends Component {
-  componentDidMount(){
+  componentWillMount(){
     console.log("getUser")
      getUser()
       .then((data) => {

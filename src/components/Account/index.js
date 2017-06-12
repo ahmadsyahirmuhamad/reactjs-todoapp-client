@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { updateUser } from '../../actions/userActions';
 import './index.css'
 
-
 class Account extends Component {
   constructor(props){
     super(props);

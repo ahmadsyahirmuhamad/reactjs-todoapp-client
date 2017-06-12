@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getTodos, addTodo } from '../../actions/todoActions';
 import './index.css'
-
-
+import TodoList from '../TodoList';
 
 class Todo extends Component {
   constructor(props){
@@ -13,14 +12,17 @@ class Todo extends Component {
       todo: {
         title: "",
         description: ""
-      }
+      },
+      searchTerm: "",
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
 
   }
-  componentDidMount(){
+  componentWillMount(){
     getTodos()
       .then((data) => {
         console.log(data)
@@ -42,20 +44,24 @@ class Todo extends Component {
       });
   }
 
+  handleSearchChange(){
+    const searchTerm = this.refs.searchTerm.value
+    this.setState({searchTerm});
+  }
+  
+  handleSearchSubmit(event){
+    event.preventDefault();
+    alert(this.state.searchTerm)
+    // const todosList = todo.todo.todos.filter((x) => {
+    //   return x.title.indexOf(this.props.searchTerm) !== -1;
+    // })
+  }
+  
+
   renderTodos() {
-    const { todo } = this.props;
+    const { todo, searchTerm } = this.props;
     if (todo.todo.todos) {
-      const mapTodos = todo.todo.todos.map((x, index) => {
-        return (
-          <tr key={ x.id }>
-            <td className="mdl-data-table__cell--non-numeric">{ x.title }</td>
-            <td>
-              { (x.complete) ? <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Completed</button> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Complete</button> }
-              </td>
-          </tr>
-        )
-      });
-      return mapTodos;
+      return <TodoList todos={todo} />
     }
   }
   render() {
@@ -64,7 +70,6 @@ class Todo extends Component {
       <div className="Todo">
         <h1 className="center">Todos</h1>
         <div id="add-todo">
-          
           <form id="todoForm" onSubmit={this.handleSubmit}>
             <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input className="mdl-textfield__input" type="text" ref="title" value={todo.title} onChange={this.handleChange} required="required" />
@@ -77,8 +82,19 @@ class Todo extends Component {
             <div>
               <input type="submit" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Submit" />
             </div>
-        </form>
-
+          </form>
+        </div>
+        <hr/>
+        <div id="search-todo">
+          <form id="todoSearchForm" onSubmit={this.handleSearchSubmit}>
+            <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input className="mdl-textfield__input" type="text" ref="searchTerm" value={todo.searchTerm} onChange={this.handleSearchChange} required="required" />
+              <label className="mdl-textfield__label">Search...</label>
+            </div>
+            <div>
+              <input type="submit" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Submit" />
+            </div>
+          </form>
         </div>
         <hr/>
         <div id="todo-table">
@@ -89,9 +105,8 @@ class Todo extends Component {
                 <th>Complete</th>
               </tr>
             </thead>
-            <tbody>
-              { this.renderTodos() }
-            </tbody>
+            { this.renderTodos() }
+            
           </table>
         </div>
       </div>
