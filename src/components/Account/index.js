@@ -8,12 +8,11 @@ import './index.css'
 class Account extends Component {
   constructor(props){
     super(props);
-    console.log("first", this.props.user)
     this.state = {
       user: {
-        first_name: this.props.user.user.users.first_name,
-        last_name: this.props.user.user.users.last_name,
-        email: this.props.user.user.users.email
+        first_name: "",
+        last_name: "",
+        email: ""
       }
     };
     
@@ -38,20 +37,21 @@ class Account extends Component {
   }
 
   render() {
+    const { user } = this.state;
     return (
       <div className="Account">
         <h1 className="center">Account</h1>
         <form id="accountForm" onSubmit={this.handleSubmit}>
             <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input className="mdl-textfield__input" type="text" ref="first_name" value={this.state.user.first_name} onChange={this.handleChange} required="required"/>
+              <input className="mdl-textfield__input" type="text" ref="first_name" value={user.first_name} onChange={this.handleChange} required="required"/>
               <label className="mdl-textfield__label">First Name...</label>
             </div>
             <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input className="mdl-textfield__input" type="text" ref="last_name" value={this.state.user.last_name} onChange={this.handleChange} required="required"/>
+              <input className="mdl-textfield__input" type="text" ref="last_name" value={user.last_name} onChange={this.handleChange} required="required"/>
               <label className="mdl-textfield__label">Last Name...</label>
             </div>
             <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input className="mdl-textfield__input" type="text" ref="email" value={this.state.user.email} onChange={this.handleChange} required="required"/>
+              <input className="mdl-textfield__input" type="text" ref="email" value={user.email} onChange={this.handleChange} required="required"/>
               <label className="mdl-textfield__label">Email...</label>
             </div>
             <div>
@@ -62,13 +62,6 @@ class Account extends Component {
     );
   }
 }
-
-// Account.propTypes = {
-//   token: PropTypes.string,
-//   email: PropTypes.string,
-//   id: PropTypes.string
-// };
-
 
 const mapStateToProps = state => {
   return {

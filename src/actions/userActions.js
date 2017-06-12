@@ -22,7 +22,7 @@ export function userLogin (session) {
     })
     .catch((error) => {
         return {
-        type: "FETCH_USER_SUCCESS",
+        type: "FETCH_USER_REJECTED",
         payload: error
         }
     });
@@ -48,7 +48,7 @@ export function getUser () {
     })
     .catch((error) => {
         return {
-        type: "FETCH_USER_SUCCESS",
+        type: "FETCH_USER_REJECTED",
         payload: error
         }
     });
@@ -77,7 +77,7 @@ export function updateUser (user) {
     })
     .catch((error) => {
         return {
-        type: "FETCH_USER_SUCCESS",
+        type: "FETCH_USER_REJECTED",
         payload: error
         }
     });
