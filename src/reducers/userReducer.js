@@ -25,6 +25,21 @@ export default function reducer(state = initialState, action) {
                 error: true
             }
         }
+        case "USER_LOGIN_SUCCESS": {
+            return {
+                ...state,
+                fetch: true,
+                user: action.payload,
+                error: false,
+                isLoggedIn: true
+            }
+        }
+        case "USER_LOGOUT_SUCCESS": {
+            return {
+                ...state,
+                isLoggedIn: action.payload
+            }
+        }
         default: {
             return state
         }

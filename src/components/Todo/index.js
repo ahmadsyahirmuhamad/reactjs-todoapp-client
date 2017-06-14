@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { getTodos, addTodo } from '../../actions/todoActions';
 import './index.css'
 import TodoList from '../TodoList';
-import SnackBar from '../SnackBar';
 
 class Todo extends Component {
   constructor(props){
@@ -41,6 +40,9 @@ class Todo extends Component {
     event.preventDefault();
     addTodo(this.state.todo)
       .then((data) => {
+        const title = ""
+        const description = ""
+        this.setState({todo: {title, description }});
         return this.props.dispatch(data)
       });
   }
@@ -66,9 +68,6 @@ class Todo extends Component {
     const { todo } = this.state;
     return (
       <div className="Todo">
-        <div>
-          <SnackBar message="this is a message" />
-        </div>
         <h1 className="center">Todos</h1>
         <div id="add-todo">
           <form id="todoForm" onSubmit={this.handleSubmit}>

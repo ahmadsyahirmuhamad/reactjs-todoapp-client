@@ -24,11 +24,27 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 fetch: true,
                 todo: {
-                    todos: state.todo.todos.concat(action.payload.todos),
+                    todos: [action.payload.todos].concat(state.todo.todos),
                 },
                 error: false
             }
         }
+        case "UPDATE_COMPLETE_TODO_SUCCESS": {
+            return {
+                ...state,
+                fetch: true,
+                todo: {
+                    todos: state.todo.todos.map((todo, index) => {
+                        if (todo.id === action.payload.todos.id) {
+                            return action.payload.todos
+                        } else {
+                            return todo
+                        }
+                    })
+                },
+                error: false
+            }
+        } 
         case "FETCH_TODO_REJECTED": {
             return {
                 ...state,

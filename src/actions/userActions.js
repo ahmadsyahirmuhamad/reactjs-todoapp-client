@@ -16,7 +16,7 @@ export function userLogin (session) {
     .then((response) => response.json())
     .then((responseJson) => {
         return {
-            type: "FETCH_USER_SUCCESS",
+            type: "USER_LOGIN_SUCCESS",
             payload: responseJson
         }
     })
@@ -26,6 +26,14 @@ export function userLogin (session) {
         payload: error
         }
     });
+}
+
+export function userLogout () {
+    window.sessionStorage.setItem("token", "")
+    return {
+        type: "USER_LOGOUT_SUCCESS",
+        payload: false
+    }
 }
 
 

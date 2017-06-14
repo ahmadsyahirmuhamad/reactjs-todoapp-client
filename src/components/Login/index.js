@@ -4,6 +4,8 @@ import { userLogin } from '../../actions/userActions';
 import { Redirect } from 'react-router-dom';
 import './index.css';
 
+const token = window.sessionStorage.getItem("token")
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -11,18 +13,29 @@ class Login extends Component {
       session: {
         email: "",
         password: ""
-      },
-      isLoggedIn: false
+      }
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-  componentDidMount(){
-    const token = window.sessionStorage.getItem("token")
-    if (token) {
-      this.setState({isLoggedIn: true });
+  componentWillMount(){
+    console.log("componentWillMount")
+  }
+  
+  componentWillReceiveProps(nextProps, nextContext){
+    console.log("componentWillReceiveProps")
+  }
+  
+  shouldComponentUpdate(nextProps, nextState, nextContext){
+    console.log("shouldComponentUpdate")    
+    return true
+  }
+
+  componentWillUpdate(nextProps, nextState, nextContext){
+    if (nextProps.user.isLoggedIn) {
+      console.log("ComponentWillUpdate")
     }
   }
 
@@ -33,7 +46,6 @@ class Login extends Component {
         if(!data.payload.error) {
           window.sessionStorage.setItem("token", data.payload.token);
           window.sessionStorage.setItem("user_id", data.payload.users.id);
-          this.setState({isLoggedIn: true });
           return this.props.dispatch(data)
         }
       });
@@ -46,11 +58,10 @@ class Login extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn } = this.props.user;
      if (isLoggedIn) {
        return <Redirect to='/account'/>;
      }
-
     return (
       <div className="Login">
         <h1 className="center">Login</h1>

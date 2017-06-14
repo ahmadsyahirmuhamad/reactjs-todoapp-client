@@ -6,13 +6,17 @@ import LoggedUser from '../LoggedUser';
 import { getUser } from '../../actions/userActions';
 import './index.css';
 
+const token = window.sessionStorage.getItem("token");
+
 class Layout extends Component {
   componentWillMount(){
-    console.log("getUser")
-     getUser()
+    if(token){
+      console.log("getUser")
+      getUser()
       .then((data) => {
         return this.props.dispatch(data)
       });
+    }
   }
 
   render() {
