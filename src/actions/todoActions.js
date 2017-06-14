@@ -1,5 +1,4 @@
 const token = window.sessionStorage.getItem("token")
-const user_id = window.sessionStorage.getItem("user_id")
 
 
 export function getTodos () {
@@ -86,3 +85,5 @@ export function updateCompleteTodo (id, boolean) {
         }
     });
 }
+
+

@@ -12,14 +12,11 @@ class Todo extends Component {
       todo: {
         title: "",
         description: ""
-      },
-      searchTerm: "",
+      }
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSearchChange = this.handleSearchChange.bind(this);
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
 
   }
   componentWillMount(){
@@ -47,23 +44,14 @@ class Todo extends Component {
       });
   }
 
-  handleSearchChange(){
-    const searchTerm = this.refs.searchTerm.value
-    this.setState({searchTerm});
-  }
-  
-  handleSearchSubmit(event){
-    event.preventDefault();
-    alert(this.state.searchTerm)
-  }
-  
 
   renderTodos() {
-    const { todo, searchTerm } = this.props;
+    const { todo } = this.props;
     if (todo.todo.todos) {
-      return <TodoList todos={todo} />
+      return <TodoList todos={this.props.todo} />
     }
   }
+
   render() {
     const { todo } = this.state;
     return (
@@ -85,30 +73,7 @@ class Todo extends Component {
           </form>
         </div>
         <hr/>
-        <div id="search-todo">
-          <form id="todoSearchForm" onSubmit={this.handleSearchSubmit}>
-            <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input className="mdl-textfield__input" type="text" ref="searchTerm" value={todo.searchTerm} onChange={this.handleSearchChange} required="required" />
-              <label className="mdl-textfield__label">Search...</label>
-            </div>
-            <div>
-              <input type="submit" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Submit" />
-            </div>
-          </form>
-        </div>
-        <hr/>
-        <div id="todo-table">
-          <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-              <tr>
-                <th className="mdl-data-table__cell--non-numeric">Title</th>
-                <th>Complete</th>
-              </tr>
-            </thead>
-            { this.renderTodos() }
-            
-          </table>
-        </div>
+        { this.renderTodos() }
       </div>
     );
   }

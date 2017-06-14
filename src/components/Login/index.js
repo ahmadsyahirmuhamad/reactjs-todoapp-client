@@ -4,8 +4,6 @@ import { userLogin } from '../../actions/userActions';
 import { Redirect } from 'react-router-dom';
 import './index.css';
 
-const token = window.sessionStorage.getItem("token")
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -44,8 +42,8 @@ class Login extends Component {
     userLogin(this.state.session)
       .then((data) => {
         if(!data.payload.error) {
-          window.sessionStorage.setItem("token", data.payload.token);
-          window.sessionStorage.setItem("user_id", data.payload.users.id);
+        
+        window.sessionStorage.setItem("user_id", data.payload.users.id);
           return this.props.dispatch(data)
         }
       });

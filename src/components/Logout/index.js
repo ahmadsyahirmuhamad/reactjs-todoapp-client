@@ -3,12 +3,7 @@ import { connect } from 'react-redux';
 import { userLogout } from '../../actions/userActions';
 import { Redirect } from 'react-router-dom';
 
-const token = window.sessionStorage.getItem("token")
-
 class Logout extends Component {
-  constructor(props) {
-    super(props);
-  }
   
   componentWillMount(){
     console.log("componentWillMount")
