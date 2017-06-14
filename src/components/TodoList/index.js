@@ -49,8 +49,8 @@ class TodoList extends Component {
                 <div id="search-todo">
                     <form id="todoSearchForm">
                         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input className="mdl-textfield__input" type="text" ref="searchTerm" value={this.state.searchTerm} onChange={this.handleSearchChange} required="required" />
-                        <label className="mdl-textfield__label">Search...</label>
+                            <input className="mdl-textfield__input" type="text" ref="searchTerm" value={this.state.searchTerm} onChange={this.handleSearchChange} required="required" />
+                            <label className="mdl-textfield__label">Search...</label>
                         </div>
                     </form>
                 </div>
